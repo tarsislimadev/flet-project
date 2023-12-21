@@ -11,3 +11,7 @@ services:
   docker-push:
     image: 'tmvdl/projects:flet'
     build: './src/app'
+
+  github-release:
+    image: 'github-release'
+    build: './src/app'
