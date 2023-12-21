@@ -13,6 +13,7 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
+
       - name: Check out
         uses: actions/checkout@v3
 
@@ -20,4 +21,9 @@ jobs:
         run: docker-compose build
 
       - name: Export app
-        run: docker run tmvdl/projects:flet ls -laR
+        run: docker run -v $(pwd)/dist:/dist tmvdl/projects:flet cp -rfv ./dist/app /dist
+
+      - name: Create release
+        run: gh release create v$( date +%Y%m%d%H%M ) ./dist/app
+        env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
