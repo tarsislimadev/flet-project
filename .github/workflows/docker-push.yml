@@ -25,5 +25,5 @@ jobs:
         run: docker-compose build
 
       - name: Docker push
-        run: docker push tmvdl/python -a
+        run: docker push tmvdl/projects -a
 
